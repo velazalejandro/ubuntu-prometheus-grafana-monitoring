@@ -25,3 +25,5 @@ Software utilizado para la ejecución de las pruebas:
 - Prometheus para recoger y almacenar métricas de monitorización.
 - Grafana para conectarse a Prometheus y presentar métricas en dashboards con gráficos y estadísticas.
 - Node Exporter para exponer información sobre CPU, memoria RAM, disco, sistema de archivos y red para que Prometheus pueda recopilarla.
+
+## Instalación
