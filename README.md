@@ -26,7 +26,7 @@ Software utilizado para la ejecución de las pruebas:
 - Grafana para conectarse a Prometheus y presentar métricas en dashboards con gráficos y estadísticas.
 - Node Exporter para exponer información sobre CPU, memoria RAM, disco, sistema de archivos y red para que Prometheus pueda recopilarla.
 
-## Instalación
+## Instalación de Grafana y Prometheus
 Primeramente, actualizamos el sistema de la máquina Ubuntu mediante apt update y apt upgrade.
 
 <img width="886" height="469" alt="image" src="https://github.com/user-attachments/assets/db5217f9-0da0-47f5-8cd3-7b579019498e" />
@@ -118,5 +118,26 @@ El puerto de Prometheus es 9090.
 Acceso vía web con nuestra ip o nuestro hostname.
 
 <img width="886" height="437" alt="image" src="https://github.com/user-attachments/assets/f95bb68a-300b-41f5-913e-80d46eed0a3e" />
+
+
+## Configuración de Grafana
+
+
+
+## Añadir Prometheus en Grafana como fuente de datos
+
+
+
+## Instalación de Node Exporter para Prometheus
+
+
+
+
+## Configuración de Prometheus
+
+
+
+## Creación de Dashboard
+
 
 
