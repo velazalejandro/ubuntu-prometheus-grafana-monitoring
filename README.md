@@ -10,7 +10,7 @@ Monitorización con Prometheus, Grafana y Node Exporter que permite observar el 
 -	Recoger métricas de CPU, memoria y disco.
 -	Crear un dashboard en Grafana.
 -	Configurar alertas básicas.
-- Prometheus: Instalación y configuración. Recopilación de métricas del sistema. Configuración de objetivos (targets). Comporbación de disponibilidad y consultas PromQL.
+- Prometheus: Instalación y configuración. Recopilación de métricas del sistema. Configuración de objetivos (targets). Comprobación de disponibilidad y consultas PromQL.
 - Grafana: Conectar Prometheus como fuente de datos. Crear un dashboard con CPU, RAM, disco y red. Añadir paneles con métricas relevantes. Configurar umbrales y alertas.
 - Node Exporter: Exponer métricas de Ubuntu. Conectar Node Exporter con Prometheus. Verificar que las métricas llegan correctamente. Provocar carga controlada y observar los cambios.
 - Pruebas de diagnóstico: Generar consumo de CPU de forma controlada. Simular la caída de un servicio de monitorización. Identificar el problema en las métricas. Documentar la incidencia y su solución.
@@ -217,6 +217,20 @@ Condición: WHEN avg() OF query(A, 5m, now) IS ABOVE 90
 <img width="886" height="374" alt="image" src="https://github.com/user-attachments/assets/24c3fcd7-c79b-4848-a68b-c930308a7e47" />
 
 Esto activa una alerta cuando el valor promedio de tu métrica supera 90 durante los últimos 5 minutos.
+
+Configuración de Canales de Notificación:
+Vamos a Alertas → Canales de notificación en la barra lateral izquierda.
+Hacemos clic en Agregar canal y elegimos el método preferido:
+
+<img width="886" height="433" alt="image" src="https://github.com/user-attachments/assets/90ebebd5-e3bf-4a87-bee5-cbb72240fd14" />
+
+Correo electrónico — requiere configuración SMTP en grafana.ini
+Asignamos el canal de notificación a tu regla de alerta para que se notifique a las personas correctas cuando se superen los umbrales.
+
+<img width="886" height="612" alt="image" src="https://github.com/user-attachments/assets/bde29875-ebd7-45b1-98c5-5105cf5dd614" />
+
+<img width="886" height="440" alt="image" src="https://github.com/user-attachments/assets/12d356cd-de9e-4b6e-956e-06407e4654f6" />
+
 
 
 ## Instalación de Node Exporter para Prometheus
