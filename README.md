@@ -120,11 +120,41 @@ Acceso vía web con nuestra ip o nuestro hostname.
 <img width="886" height="437" alt="image" src="https://github.com/user-attachments/assets/f95bb68a-300b-41f5-913e-80d46eed0a3e" />
 
 
-## Configuración de Grafana
-
-
 
 ## Añadir Prometheus en Grafana como fuente de datos
+Configurar Fuentes de Datos en Grafana:
+Grafana es una capa de visualización — no almacena métricas por sí mismo. En su lugar, se conecta a fuentes de datos externas como Prometheus, InfluxDB, Elasticsearch, MySQL, PostgreSQL, y muchas otras. Configurar una fuente de datos es el primer paso esencial antes de crear cualquier panel.
+
+Navegar a Fuentes de Datos:
+En la barra lateral izquierda, clic en el icono de engranaje (⚙) para abrir el menú de Configuración.
+Seleccionamos Fuentes de Datos.
+
+Agregar una Nueva Fuente de Datos:
+Hacemos clic en Agregar fuente de datos.
+
+<img width="886" height="433" alt="image" src="https://github.com/user-attachments/assets/69758068-9fd0-44e5-8f26-11cd1ecf3a57" />
+
+Add data source
+
+Examinamos la lista y seleccionamos el tipo de fuente de datos que desees. En este caso Prometheus.
+
+<img width="886" height="438" alt="image" src="https://github.com/user-attachments/assets/de63a9d1-5151-443f-9836-cf6b4b5f8f22" />
+
+<img width="886" height="435" alt="image" src="https://github.com/user-attachments/assets/aac4c909-6525-4565-b90b-981621f14f7c" />
+
+Ingresar Detalles de Conexión:
+Completamos los parámetros de conexión para tu fuente de datos elegida. Por ejemplo, si te estás conectando a una instancia de Prometheus ejecutándose localmente:
+URL: http://localhost:9090
+Acceso: Server (default)
+Intervalo de extracción: 15s (coincide con tu configuración de extracción de Prometheus)
+Para una instancia remota de InfluxDB, proporcionarías la URL del host, el nombre de la base de datos y las credenciales de autenticación.
+
+<img width="886" height="558" alt="image" src="https://github.com/user-attachments/assets/ee1b6c49-b52d-4f39-97d7-0e119e4c37e3" />
+
+Guardar y Probar la Conexión:
+Hacemos clic en Guardar y Probar. Grafana intentará conectarse a la fuente de datos y mostrará un mensaje de éxito o error. Una confirmación verde de “La fuente de datos está funcionando” significa que estás listo para crear paneles.
+
+<img width="886" height="445" alt="image" src="https://github.com/user-attachments/assets/ee5c29c1-1b2a-4a0e-8f64-13c0e72852a5" />
 
 
 
@@ -138,6 +168,62 @@ Acceso vía web con nuestra ip o nuestro hostname.
 
 
 ## Creación de Dashboard
+Creación de panel de Grafana:
+Con una fuente de datos conectada, ahora podemos crear paneles para visualizar métricas en tiempo real.
+En la barra lateral izquierda, hacemos clic en el icono + (más).
+Seleccionamos Dashboard.
+Hacemos clic en Add new panel.
+
+<img width="886" height="401" alt="image" src="https://github.com/user-attachments/assets/5fcbd2c7-548a-4d34-8a20-a6f41c91119a" />
+
+Configuramos el panel:
+
+Se abre el editor de paneles, dándonos el control total sobre qué datos se muestran y cómo se visualizan.
+Data Source: Seleccionamos la fuente de datos que configuraste anteriormente.
+Query: Escribimos la consulta de métrica. Para Prometheus, usamos PromQL. Por ejemplo, para visualizar el uso de CPU:
+100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)
+
+<img width="886" height="424" alt="image" src="https://github.com/user-attachments/assets/a87b785b-115c-4df4-bdbf-c186267bb769" />
+
+Visualization Type: Elegimos entre Time series, Gauge, Bar chart, Table, Stat, Heatmap, etc, dependiendo de la naturaleza de los datos.
+
+<img width="886" height="426" alt="image" src="https://github.com/user-attachments/assets/e00693bd-89d1-4b09-a8e5-39e8aa34f442" />
+
+Panel Title: Dale a tu panel un nombre descriptivo: CPU Usage — Last 1 Hour
+
+Personalizamos y guardamos.
+
+<img width="886" height="424" alt="image" src="https://github.com/user-attachments/assets/534c4aa2-a452-4a36-b72e-0b65ad8f3edc" />
+
+Usamos las opciones del panel de la derecha para configurar umbrales, esquemas de color, etiquetas de ejes y leyendas. Una vez satisfecho:
+Hacemos clic en Apply para añadir el panel al panel de control.
+Hacemos clic en el icono Save dashboard (disquete) en la esquina superior derecha, escribimos un nombre a tu panel de control y hacemos clic en Save.
+
+<img width="781" height="477" alt="image" src="https://github.com/user-attachments/assets/a503419b-498d-4a81-b34f-3593219a6af6" />
+
+<img width="886" height="420" alt="image" src="https://github.com/user-attachments/assets/6da44bc1-a4d2-446c-8cf2-daba7b106d35" />
+
+Consejo profesional: La biblioteca oficial de paneles de Grafana ofrece cientos de paneles preconstruidos, contribuidos por la comunidad, para pilas populares como Node Exporter, Kubernetes, MySQL y NGINX. Puedes importarlos directamente usando un ID de panel.
 
 
+## Configuración de Alerta
+El motor de alertas integrado de Grafana permite definir reglas basadas en umbrales y recibir notificaciones cuando las métricas superen niveles críticos, manteniéndote informado antes de que los pequeños problemas se conviertan en interrupciones importantes.
 
+Creación de una Regla de Alerta:
+Abrimos el panel que deseas monitorear y hacemos clic en Editar.
+
+<img width="883" height="525" alt="image" src="https://github.com/user-attachments/assets/f8aa2b63-e985-4f2d-ae50-0a9c8a47e09d" />
+
+Navegamos a la pestaña Alerta dentro del editor de paneles.
+
+
+Hacemos clic en Crear Alerta.
+Definir Condiciones de Alerta:
+Configuramos las condiciones que activan la alerta. Por ejemplo:
+Condición: WHEN avg() OF query(A, 5m, now) IS ABOVE 90
+
+<img width="886" height="384" alt="image" src="https://github.com/user-attachments/assets/ed83738f-4b93-43ab-92e8-eb7441e816c2" />
+
+<img width="886" height="374" alt="image" src="https://github.com/user-attachments/assets/24c3fcd7-c79b-4848-a68b-c930308a7e47" />
+
+Esto activa una alerta cuando el valor promedio de tu métrica supera 90 durante los últimos 5 minutos.
