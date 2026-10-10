@@ -157,16 +157,6 @@ Hacemos clic en Guardar y Probar. Grafana intentará conectarse a la fuente de d
 <img width="886" height="445" alt="image" src="https://github.com/user-attachments/assets/ee5c29c1-1b2a-4a0e-8f64-13c0e72852a5" />
 
 
-
-## Instalación de Node Exporter para Prometheus
-
-
-
-
-## Configuración de Prometheus
-
-
-
 ## Creación de Dashboard
 Creación de panel de Grafana:
 Con una fuente de datos conectada, ahora podemos crear paneles para visualizar métricas en tiempo real.
@@ -227,3 +217,6 @@ Condición: WHEN avg() OF query(A, 5m, now) IS ABOVE 90
 <img width="886" height="374" alt="image" src="https://github.com/user-attachments/assets/24c3fcd7-c79b-4848-a68b-c930308a7e47" />
 
 Esto activa una alerta cuando el valor promedio de tu métrica supera 90 durante los últimos 5 minutos.
+
+
+## Instalación de Node Exporter para Prometheus
