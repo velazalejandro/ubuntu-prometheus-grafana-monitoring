@@ -236,7 +236,7 @@ Asignamos el canal de notificación a tu regla de alerta para que se notifique a
 ## Instalación de Node Exporter para Prometheus
 Node Exporter es el exportador oficial de Prometheus para métricas del sistema: CPU, memoria, disco, sistemas de archivos, red y carga. Expone esas métricas por HTTP en el puerto 9100 para que un servidor Prometheus las recoja periódicamente.
 
-Creación de un usuario de sistema:
+### Creación de un usuario de sistema:
 Node Exporter no necesita privilegios, así que se ejecutará con un usuario propio sin shell ni directorio personal:
 sudo useradd --system --no-create-home --shell /usr/sbin/nologin node_exporter
 
