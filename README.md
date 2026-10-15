@@ -238,10 +238,10 @@ Node Exporter es el exportador oficial de Prometheus para métricas del sistema:
 
 ### Creación de un usuario de sistema:
 Node Exporter no necesita privilegios, así que se ejecutará con un usuario propio sin shell ni directorio personal:
-sudo useradd --system --no-create-home --shell /usr/sbin/nologin node_exporter
+- sudo useradd --system --no-create-home --shell /usr/sbin/nologin node_exporter
 
 Comprobamos que existe el usuario:
-id node_exporter
+- id node_exporter
 
 <img width="886" height="202" alt="image" src="https://github.com/user-attachments/assets/460dd284-e865-46e2-9180-65b42fdc4b42" />
 
@@ -251,16 +251,16 @@ Ubuntu incluye el paquete prometheus-node-exporter, pero trae una versión antig
 <img width="886" height="394" alt="image" src="https://github.com/user-attachments/assets/bcb412b5-7c9c-415f-bf87-09a88dfdd7ff" />
 
 Verifica la suma de comprobación antes de instalar nada:
-sha256sum --check --ignore-missing sha256sums.txt
+- sha256sum --check --ignore-missing sha256sums.txt
 
 <img width="886" height="66" alt="image" src="https://github.com/user-attachments/assets/9e6a0de2-4817-4419-92d3-90ee33bf9dca" />
 
 node_exporter-1.12.1.linux-amd64.tar.gz: OK
 
 ### Extraemos el archivo e instalamos el binario en /usr/local/bin:
-tar xzf "node_exporter-${VERSION}.linux-${ARCH}.tar.gz"
-sudo install -m 0755 "node_exporter-${VERSION}.linux-${ARCH}/node_exporter" /usr/local/bin/
-node_exporter --version
+- tar xzf "node_exporter-${VERSION}.linux-${ARCH}.tar.gz"
+- sudo install -m 0755 "node_exporter-${VERSION}.linux-${ARCH}/node_exporter" /usr/local/bin/
+- node_exporter --version
 
 <img width="886" height="92" alt="image" src="https://github.com/user-attachments/assets/fc46c72f-8323-404e-b12c-8cb38279126b" />
 
@@ -269,13 +269,13 @@ node_exporter --version
 La salida nos muestra la versión instalada.
 
 Limpiamos los archivos temporales:
-rm -rf /tmp/node_exporter-* /tmp/sha256sums.txt
+- rm -rf /tmp/node_exporter-* /tmp/sha256sums.txt
 
 <img width="886" height="71" alt="image" src="https://github.com/user-attachments/assets/5c0a2765-e531-4517-a12e-e8393fc99997" />
 
 ### Creación del servicio systemd:
 Creamos también el directorio del recolector textfile, para publicar métricas:
-sudo install -d -o node_exporter -g node_exporter -m 0755 /var/lib/node_exporter/textfile_collector
+- sudo install -d -o node_exporter -g node_exporter -m 0755 /var/lib/node_exporter/textfile_collector
 
 <img width="886" height="157" alt="image" src="https://github.com/user-attachments/assets/b0e45f2d-da1f-4a29-b41d-2faf95a61dc0" />
 
@@ -308,20 +308,20 @@ La mayoría de recolectores (CPU, memoria, disco, red, sistemas de archivos) vie
 
 Recargamos systemd, habilitamos y arrancamos el servicio:
 
-sudo systemctl daemon-reload
-sudo systemctl enable --now node_exporter
-systemctl status node_exporter --no-pager
+- sudo systemctl daemon-reload
+- sudo systemctl enable --now node_exporter
+- systemctl status node_exporter --no-pager
 
 <img width="886" height="312" alt="image" src="https://github.com/user-attachments/assets/34c2bf43-7f76-404f-a9e8-d9f5e8ecc001" />
 
 Comprobamos que responde en su puerto habitual:
-curl http://localhost:9100/metrics
+- curl http://localhost:9100/metrics
 
 <img width="886" height="437" alt="image" src="https://github.com/user-attachments/assets/38c3b1ee-58ef-4050-b61d-c710ca787cbb" />
 
 ### Comprobar las métricas:
 Pide el endpoint /metrics desde el propio servidor y filtra algunas métricas conocidas:
-curl -s http://localhost:9100/metrics | grep -E '^node_(load1|memory_MemAvailable_bytes|filesystem_avail_bytes\{.*mountpoint="/")'
+- curl -s http://localhost:9100/metrics | grep -E '^node_(load1|memory_MemAvailable_bytes|filesystem_avail_bytes\{.*mountpoint="/")'
 
 <img width="886" height="73" alt="image" src="https://github.com/user-attachments/assets/99f1cc09-b3b5-46f5-8203-39c8879109f3" />
 
