@@ -245,7 +245,7 @@ id node_exporter
 
 <img width="886" height="202" alt="image" src="https://github.com/user-attachments/assets/460dd284-e865-46e2-9180-65b42fdc4b42" />
 
-Descargar e instalar el binario:
+### Descargar e instalar el binario:
 Ubuntu incluye el paquete prometheus-node-exporter, pero trae una versión antigua. El proyecto publica binarios estáticos en GitHub, que es la forma recomendada de tener una versión actual.
 
 <img width="886" height="394" alt="image" src="https://github.com/user-attachments/assets/bcb412b5-7c9c-415f-bf87-09a88dfdd7ff" />
@@ -257,7 +257,7 @@ sha256sum --check --ignore-missing sha256sums.txt
 
 node_exporter-1.12.1.linux-amd64.tar.gz: OK
 
-Extraemos el archivo e instalamos el binario en /usr/local/bin:
+### Extraemos el archivo e instalamos el binario en /usr/local/bin:
 tar xzf "node_exporter-${VERSION}.linux-${ARCH}.tar.gz"
 sudo install -m 0755 "node_exporter-${VERSION}.linux-${ARCH}/node_exporter" /usr/local/bin/
 node_exporter --version
@@ -273,7 +273,7 @@ rm -rf /tmp/node_exporter-* /tmp/sha256sums.txt
 
 <img width="886" height="71" alt="image" src="https://github.com/user-attachments/assets/5c0a2765-e531-4517-a12e-e8393fc99997" />
 
-Creación del servicio systemd:
+### Creación del servicio systemd:
 Creamos también el directorio del recolector textfile, para publicar métricas:
 sudo install -d -o node_exporter -g node_exporter -m 0755 /var/lib/node_exporter/textfile_collector
 
@@ -305,7 +305,9 @@ WantedBy=multi-user.target
 <img width="886" height="585" alt="image" src="https://github.com/user-attachments/assets/0a7de49f-efa2-48fc-85e5-f3601dd1481a" />
 
 La mayoría de recolectores (CPU, memoria, disco, red, sistemas de archivos) vienen activados por defecto. --collector.systemd añade el estado de cada unidad de systemd, útil para alertar de servicios caídos. Las opciones NoNewPrivileges y Protect* limitan lo que el proceso puede tocar, ya que solo necesita leer.
+
 Recargamos systemd, habilitamos y arrancamos el servicio:
+
 sudo systemctl daemon-reload
 sudo systemctl enable --now node_exporter
 systemctl status node_exporter --no-pager
@@ -317,7 +319,7 @@ curl http://localhost:9100/metrics
 
 <img width="886" height="437" alt="image" src="https://github.com/user-attachments/assets/38c3b1ee-58ef-4050-b61d-c710ca787cbb" />
 
-Comprobar las métricas:
+### Comprobar las métricas:
 Pide el endpoint /metrics desde el propio servidor y filtra algunas métricas conocidas:
 curl -s http://localhost:9100/metrics | grep -E '^node_(load1|memory_MemAvailable_bytes|filesystem_avail_bytes\{.*mountpoint="/")'
 
