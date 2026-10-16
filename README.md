@@ -395,6 +395,7 @@ Después completaremos RAM, disco y red, y revisaremos las alertas y las notific
 100 * node_memory_MemAvailable_bytes
 / node_memory_MemTotal_bytes
 Este cálculo muestra el porcentaje disponible, no el utilizado.
+Muestra el porcentaje de RAM disponible. Configura la unidad como porcentaje de 0 a 100.
 
 -	Espacio de disco utilizado:
 100 * (1 -
@@ -410,9 +411,10 @@ Este cálculo muestra el porcentaje disponible, no el utilizado.
 )
 
 Representa el uso del sistema de archivos raíz. Comprueba que el selector devuelve datos en tu Ubuntu.
+Muestra el porcentaje ocupado en el sistema de archivos raíz /. Configura la unidad como porcentaje.
 
 -	Tráfico de Red:
 rate(node_network_receive_bytes_total{
   device!="lo"
 }[5m])
-
+Muestra los bytes recibidos por segundo en las interfaces de red, excluyendo la interfaz local lo. Configura la unidad como bytes/sec (bytes por segundo).
