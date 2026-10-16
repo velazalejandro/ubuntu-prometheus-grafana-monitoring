@@ -390,5 +390,29 @@ Realizamos unos pequeños ajustes en el Dashboard:
 
 Después completaremos RAM, disco y red, y revisaremos las alertas y las notificaciones.
 
+## Creación de Dashboards para Memoria RAM, Espacio de disco utilizado y Tráfico de Red
+-	Memoria RAM:
+100 * node_memory_MemAvailable_bytes
+/ node_memory_MemTotal_bytes
+Este cálculo muestra el porcentaje disponible, no el utilizado.
 
+-	Espacio de disco utilizado:
+100 * (1 -
+  node_filesystem_avail_bytes{
+    mountpoint="/",
+    fstype!~"tmpfs|overlay"
+  }
+  /
+  node_filesystem_size_bytes{
+    mountpoint="/",
+    fstype!~"tmpfs|overlay"
+  }
+)
+
+Representa el uso del sistema de archivos raíz. Comprueba que el selector devuelve datos en tu Ubuntu.
+
+-	Tráfico de Red:
+rate(node_network_receive_bytes_total{
+  device!="lo"
+}[5m])
 
