@@ -359,3 +359,36 @@ http://localhost:9090/targets
 
 Node aparece como UP, así que pasaremos a Grafana para representar métricas reales de CPU, RAM, disco y red.
 
+Ahora vamos a Grafana para aprovechar los datos que ya está recogiendo Prometheus.
+Realizamos la siguiente prueba en Grafana:
+1. Abrimos el dashboard actual.
+2. Editamos el panel donde configuramos anteriormente la consulta de CPU.
+3. Comprobamos que la consulta utiliza una métrica real de Node Exporter.
+   
+Para ver el porcentaje de CPU ocupada, utilizamos esta consulta PromQL:
+100 * (1 - avg by (instance) (
+  rate(node_cpu_seconds_total{mode="idle"}[5m])
+))
+
+<img width="1282" height="631" alt="image" src="https://github.com/user-attachments/assets/1708d542-7a39-4bfd-b390-ce4f9567807f" />
+
+Esta consulta calcula el porcentaje medio de CPU ocupada durante los últimos cinco minutos. Grafana muestra un valor numérico y una gráfica de CPU.
+
+Realizamos unos pequeños ajustes en el Dashboard:
+- Renombramos el Título: CPU Usage (%).
+
+<img width="878" height="394" alt="image" src="https://github.com/user-attachments/assets/d52812d1-838c-48a4-8107-f71326012533" />
+
+- Leyenda: {{instance}} para que aparezca localhost:9100 en lugar de {instance="localhost:9100"}.
+
+<img width="886" height="183" alt="image" src="https://github.com/user-attachments/assets/acd09b16-a62f-4a3a-b9e9-5cdd1e2170bd" />
+
+- Visualización: Añadimos un panel tipo Gauge para ver el porcentaje actual.
+
+<img width="886" height="380" alt="image" src="https://github.com/user-attachments/assets/8db336d2-7554-49e4-8151-c7236afff0e0" />
+
+
+Después completaremos RAM, disco y red, y revisaremos las alertas y las notificaciones.
+
+
+
