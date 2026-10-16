@@ -326,3 +326,36 @@ Pide el endpoint /metrics desde el propio servidor y filtra algunas métricas co
 <img width="886" height="73" alt="image" src="https://github.com/user-attachments/assets/99f1cc09-b3b5-46f5-8203-39c8879109f3" />
 
 Cada línea es una serie: nombre de la métrica, etiquetas entre llaves y valor actual. Prometheus guardará estos valores cada vez que haga un scrape.
+
+Comprobamos que responde en su puerto habitual:
+- curl http://localhost:9100/metrics
+
+<img width="886" height="437" alt="image" src="https://github.com/user-attachments/assets/c14c11f4-1236-400e-b641-eb9b8fcfb2b8" />
+
+Abrimos el archivo de configuración de Prometheus, que se encuentra situado en /etc/prometheus/prometheus.yml, y comprobamos si ya contiene una sección scrape_configs.
+
+- sudo cat /etc/prometheus/prometheus.yml
+
+<img width="886" height="577" alt="image" src="https://github.com/user-attachments/assets/ca29d88b-7da6-454d-b0bd-d9b771c6e3fc" />
+
+<img width="886" height="393" alt="image" src="https://github.com/user-attachments/assets/04a18e36-672b-4966-8a4a-9da69e472167" />
+
+Indica a Prometheus que consulte a Node Exporter en el puerto 9100.
+
+Reiniciamos Prometheus para asegurarnos de que carga la configuración actualizada:
+- sudo systemctl restart prometheus
+
+Comprobamos su estado:
+- sudo systemctl status prometheus
+
+<img width="886" height="278" alt="image" src="https://github.com/user-attachments/assets/26e60af3-3b5e-4869-ad96-274484728681" />
+
+El servicio está en estado active (running).
+
+Abrimos en el navegador la interfaz de Prometheus:
+http://localhost:9090/targets
+
+<img width="886" height="423" alt="image" src="https://github.com/user-attachments/assets/c38649c3-82d3-4e72-b445-b496fb5a65d7" />
+
+Node aparece como UP, así que pasaremos a Grafana para representar métricas reales de CPU, RAM, disco y red.
+
