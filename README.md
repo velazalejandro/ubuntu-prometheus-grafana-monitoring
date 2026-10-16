@@ -426,3 +426,8 @@ rate(node_network_receive_bytes_total{
 <img width="1265" height="584" alt="image" src="https://github.com/user-attachments/assets/1ad60be4-35f8-48a4-829f-7f94ea474016" />
 
 Muestra los bytes recibidos por segundo en las interfaces de red, excluyendo la interfaz local lo. Configura la unidad como bytes/sec (bytes por segundo).
+
+<img width="886" height="549" alt="image" src="https://github.com/user-attachments/assets/4acfe1f1-0352-4df6-b0f0-563dc79deef5" />
+
+Hemos terminado de completar el Dashboard con sus 4 paneles configurados (CPU, RAM, Disco y Red). También lo hemos renombrado de nombre Ubuntu System Monitoring.
+
