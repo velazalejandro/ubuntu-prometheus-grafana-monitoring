@@ -390,12 +390,15 @@ Realizamos unos pequeños ajustes en el Dashboard:
 
 Después completaremos RAM, disco y red, y revisaremos las alertas y las notificaciones.
 
-## Creación de Dashboards para Memoria RAM, Espacio de disco utilizado y Tráfico de Red
+### Creación de paneles para Memoria RAM, Espacio de disco utilizado y Tráfico de Red en el mismo Dashboard
 -	Memoria RAM:
 100 * node_memory_MemAvailable_bytes
 / node_memory_MemTotal_bytes
-Este cálculo muestra el porcentaje disponible, no el utilizado.
-Muestra el porcentaje de RAM disponible. Configura la unidad como porcentaje de 0 a 100.
+
+<img width="1279" height="625" alt="image" src="https://github.com/user-attachments/assets/3e1bf1dc-e20e-4ed2-9068-b296fb13d496" />
+
+Este cálculo muestra el porcentaje de RAM disponible. Configura la unidad como porcentaje de 0 a 100.
+
 
 -	Espacio de disco utilizado:
 100 * (1 -
@@ -410,6 +413,8 @@ Muestra el porcentaje de RAM disponible. Configura la unidad como porcentaje de 
   }
 )
 
+<img width="1256" height="591" alt="image" src="https://github.com/user-attachments/assets/056acf9b-25f9-40c4-8d4f-796caeaa65f7" />
+
 Representa el uso del sistema de archivos raíz. Comprueba que el selector devuelve datos en tu Ubuntu.
 Muestra el porcentaje ocupado en el sistema de archivos raíz /. Configura la unidad como porcentaje.
 
@@ -417,4 +422,7 @@ Muestra el porcentaje ocupado en el sistema de archivos raíz /. Configura la un
 rate(node_network_receive_bytes_total{
   device!="lo"
 }[5m])
+
+<img width="1265" height="584" alt="image" src="https://github.com/user-attachments/assets/1ad60be4-35f8-48a4-829f-7f94ea474016" />
+
 Muestra los bytes recibidos por segundo en las interfaces de red, excluyendo la interfaz local lo. Configura la unidad como bytes/sec (bytes por segundo).
