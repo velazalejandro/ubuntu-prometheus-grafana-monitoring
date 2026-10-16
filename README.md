@@ -430,3 +430,10 @@ Muestra los bytes recibidos por segundo en las interfaces de red, excluyendo la 
 
 Hemos terminado de completar el Dashboard con sus 4 paneles configurados (CPU, RAM, Disco y Red). También lo hemos renombrado de nombre Ubuntu System Monitoring.
 
+## Licencia 📄
+Bajo licencia GNU General Public License v3.0
+
+## Autor
+Alejandro Velaz
+
+🎓 Formación: ASIR
